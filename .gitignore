@@ -9,3 +9,10 @@
 
 # Simulation output directories
 Case2_*/
+
+# Python artifacts
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/

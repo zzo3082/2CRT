@@ -65,3 +65,28 @@
    .\crt_sim.exe
    ```
 5. 執行完成後，實驗結果會匯出至 `Case2_newcombined_..._GO/` 資料夾內的 `.csv` 檔案，且執行過程會被記錄在 `simulation.log` 中。
+
+## Python 數據分析友化版
+
+為了方便後續與數據分析工具（如 Jupyter Notebook, Pandas）對接，本專案也提供了 Python 重構版本。此版本利用 NumPy 的向量化運算 (Vectorization) 與多處理器平行化 (Multiprocessing) 來兼顧開發便利性與執行效能。
+
+### Python 核心檔案說明 (位於 `python_version/`)
+
+- **`main.py`**：進入點。負責參數設定、使用 `multiprocessing.Pool` 調度核心，並整合所有實驗數據。
+- **`sequence.py`**：利用 NumPy 廣播機制處理序列生成與位移。
+- **`simulation.py`**：利用 `np.bincount` 實現極速的碰撞與成功傳輸判斷。
+- **`metrics.py`**：利用向量化技巧計算 Throughput、Delay 與 AoI，大幅減少 Python 原生迴圈的負擔。
+- **`export.py`**：利用 Pandas 將結果匯出為 `.xlsx` 檔案，方便直接在 Excel 中閱讀與畫圖。
+
+### 執行方式 (Python 版)
+
+1. 確保已安裝 Python 3.x 以及必要套件：
+   ```powershell
+   pip install -r python_version/requirements.txt
+   ```
+2. 執行程式：
+   ```powershell
+   python python_version/main.py
+   ```
+3. 執行完成後，實驗結果會匯出至 `Case2_newcombined_..._PY/` 資料夾內的 `.xlsx` 檔案。
+
