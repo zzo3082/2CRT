@@ -1,1 +1,11 @@
+# .agent file
 .agent/
+
+# Golang build artifacts
+*.exe
+
+# Log files
+*.log
+
+# Simulation output directories
+Case2_*/
